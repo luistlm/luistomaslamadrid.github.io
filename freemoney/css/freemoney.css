@@ -255,7 +255,7 @@ a {
 [data-theme="dark"] .goal-card,
 [data-theme="dark"] .smart-savings article,
 [data-theme="dark"] .unified-total {
-    background: rgba(11, 16, 32, 0.78);
+    background: rgba(5, 9, 18, 0.92);
 }
 
 .hero-metrics article {
@@ -335,9 +335,25 @@ a {
     color: #04130a;
 }
 
+[data-theme="dark"] .balance-card,
+[data-theme="dark"] .summary-card.income,
+[data-theme="dark"] .summary-card.spending,
+[data-theme="dark"] .summary-card.savings {
+    border: 1px solid #1f2937;
+    background: linear-gradient(135deg, #030712, #0f172a);
+    color: var(--text);
+}
+
 .balance-card span,
 .balance-card small {
     color: rgba(4, 19, 10, 0.72);
+}
+
+[data-theme="dark"] .balance-card span,
+[data-theme="dark"] .balance-card small,
+[data-theme="dark"] .summary-card span,
+[data-theme="dark"] .summary-card small {
+    color: var(--muted);
 }
 
 .balance-card strong {
@@ -511,6 +527,23 @@ select {
     outline: none;
 }
 
+[data-theme="dark"] textarea,
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] .phone-card,
+[data-theme="dark"] .chat-bubble,
+[data-theme="dark"] .phone-chart,
+[data-theme="dark"] .phone-tabs,
+[data-theme="dark"] .legend button,
+[data-theme="dark"] .transaction-item {
+    background: #050914;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--primary);
+}
+
 textarea:focus,
 input:focus,
 select:focus {
@@ -553,6 +586,30 @@ th {
     text-transform: uppercase;
 }
 
+.approval-copy {
+    margin: -6px 0 14px;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.approval-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.approval-actions span {
+    color: var(--muted);
+    font-weight: 800;
+}
+
+.category-review {
+    min-width: 168px;
+    padding: 9px 10px;
+}
+
 .prototype-section {
     width: min(960px, calc(100% - 32px));
 }
@@ -565,6 +622,11 @@ th {
     background: linear-gradient(180deg, var(--surface), var(--surface-strong));
     box-shadow: var(--shadow);
     padding: 20px 20px 92px;
+}
+
+[data-theme="dark"] .app-prototype,
+[data-theme="dark"] .phone {
+    background: linear-gradient(180deg, #030712, #020617);
 }
 
 .prototype-status {
@@ -627,9 +689,22 @@ th {
     background: linear-gradient(135deg, #bfdbfe, #60a5fa);
 }
 
+[data-theme="dark"] .summary-card.income,
+[data-theme="dark"] .summary-card.spending,
+[data-theme="dark"] .summary-card.savings {
+    border: 1px solid #1f2937;
+    background: linear-gradient(135deg, #030712, #0f172a);
+    color: var(--text);
+}
+
 .summary-card span,
 .summary-card small {
     color: rgba(4, 19, 10, 0.72);
+}
+
+[data-theme="dark"] .summary-card span,
+[data-theme="dark"] .summary-card small {
+    color: var(--muted);
 }
 
 .summary-card strong {
@@ -732,8 +807,29 @@ th {
     margin-bottom: 14px;
 }
 
+.goal-form {
+    grid-template-columns: 1.2fr 0.9fr 0.8fr 1fr auto;
+}
+
 .quick-form button {
     min-height: 48px;
+}
+
+.fab {
+    position: absolute;
+    right: 28px;
+    top: 126px;
+    display: grid;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+    border: 0;
+    border-radius: 999px;
+    background: var(--primary);
+    color: #04130a;
+    font-size: 1.7rem;
+    font-weight: 900;
+    box-shadow: 0 18px 36px rgba(34, 197, 94, 0.28);
 }
 
 .transaction-list {
@@ -804,6 +900,21 @@ th {
 #botResponse {
     margin: 12px 0 0;
     color: var(--muted);
+}
+
+.connected-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.connected-dot::before {
+    width: 9px;
+    height: 9px;
+    content: "";
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 5px var(--primary-soft);
 }
 
 .wallet-grid {
@@ -1007,6 +1118,7 @@ progress::-moz-progress-bar {
 
     .feature-grid,
     .quick-form,
+    .goal-form,
     .chat-form {
         grid-template-columns: 1fr;
     }
@@ -1034,5 +1146,15 @@ progress::-moz-progress-bar {
 
     .transaction-amount {
         grid-column: 2;
+    }
+
+    .approval-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .fab {
+        right: 22px;
+        top: 116px;
     }
 }

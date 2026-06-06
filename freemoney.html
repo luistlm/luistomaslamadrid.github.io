@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="freemoney: aplicacion de finanzas personales con parser de resumenes, bot de WhatsApp y ahorro inteligente.">
+    <title>freemoney | Finanzas personales</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/freemoney.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="app-shell">
+        <header class="hero">
+            <nav class="topbar" aria-label="Navegacion principal">
+                <a class="brand" href="freemoney.html" aria-label="freemoney inicio">
+                    <span class="brand-mark">$</span>
+                    <span>freemoney</span>
+                </a>
+                <div class="topbar-actions">
+                    <a href="index.html">Portfolio</a>
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+                        <span class="theme-toggle__icon" aria-hidden="true">◐</span>
+                        <span class="theme-toggle__label">Modo sistema</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="hero-grid">
+                <section class="hero-copy" aria-labelledby="hero-title">
+                    <p class="eyebrow">Finanzas personales sin carga manual</p>
+                    <h1 id="hero-title">Lee resumenes, entiende gastos diarios y automatiza el ahorro.</h1>
+                    <p class="hero-description">
+                        freemoney centraliza ingresos, gastos y metas de ahorro con parser bilingue de PDFs,
+                        carga manual rapida y un bot de WhatsApp para registrar consumos cotidianos en lenguaje natural.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#prototype">Ver prototipo</a>
+                        <a class="button button-secondary" href="#requirements">Requerimientos</a>
+                    </div>
+                    <div class="hero-metrics" aria-label="Indicadores destacados">
+                        <article>
+                            <strong>$ 1.284.500</strong>
+                            <span>volumen mensual procesado</span>
+                        </article>
+                        <article>
+                            <strong>4 tabs</strong>
+                            <span>Main, Income, Spending y Savings</span>
+                        </article>
+                        <article>
+                            <strong>3 monedas</strong>
+                            <span>ARS, USD y USDC en billetera unificada</span>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="phone" aria-label="Vista previa de la aplicacion">
+                    <div class="phone-top">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="phone-card balance-card">
+                        <span>Salud financiera</span>
+                        <strong>$ 842.700</strong>
+                        <small>+18% vs mes anterior</small>
+                    </div>
+                    <div class="phone-grid">
+                        <div class="phone-card mini">
+                            <span>Ingresos</span>
+                            <strong>$ 1.240k</strong>
+                        </div>
+                        <div class="phone-card mini">
+                            <span>Gastos</span>
+                            <strong>$ 397k</strong>
+                        </div>
+                    </div>
+                    <div class="phone-chart" aria-hidden="true">
+                        <span></span>
+                    </div>
+                    <div class="chat-bubble">
+                        <small>WhatsApp bot</small>
+                        <strong>"Cena amigos 12000"</strong>
+                        <span>Gasto agregado: Gastronomia</span>
+                    </div>
+                    <div class="phone-tabs" aria-hidden="true">
+                        <span>Main</span>
+                        <span>Income</span>
+                        <span>Spend</span>
+                        <span>Save</span>
+                    </div>
+                </section>
+            </div>
+        </header>
+
+        <main>
+            <section class="section" id="requirements">
+                <div class="section-heading">
+                    <p class="eyebrow">Documento de especificacion</p>
+                    <h2>Requerimientos funcionales organizados por modulo</h2>
+                    <p>
+                        La propuesta transforma los puntos del brief en bloques de producto listos para prototipar:
+                        interfaz, parser, cuatro pestañas operativas, automatizaciones y soporte multidivisa.
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <span class="feature-icon">◑</span>
+                        <h3>UI claro/oscuro</h3>
+                        <p>Soporte nativo de tema manual o sincronizado con sistema, con negros profundos para OLED y grises de bajo contraste visual.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-icon">▣</span>
+                        <h3>Navegacion inferior</h3>
+                        <p>Bottom navigation permanente con acceso directo a Principal, Ingresos, Gastos y Ahorros.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-icon">PDF</span>
+                        <h3>Parser bilingue</h3>
+                        <p>Extraccion de fecha, descripcion, monto y tipo de movimiento desde resumenes bancarios en español e ingles.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-icon">WA</span>
+                        <h3>Bot de WhatsApp</h3>
+                        <p>Procesamiento de mensajes como "1500 cafe" o "Subscription 15 usd" con categorizacion automatica y registro inmediato.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section parser-section" aria-labelledby="parser-title">
+                <div class="section-heading compact">
+                    <p class="eyebrow">Motor de procesamiento</p>
+                    <h2 id="parser-title">Demo de parser de resumenes</h2>
+                    <p>Pega movimientos en español o ingles para simular la extraccion inteligente que alimenta la base local.</p>
+                </div>
+                <div class="parser-layout">
+                    <form class="panel parser-panel" id="parserForm">
+                        <label for="statementText">Resumen bancario / tarjeta</label>
+                        <textarea id="statementText" rows="8">03/06/2026 SUPERMERCADO NORTE -42500
+06/03/2026 Salary ACME Corp +980000
+2026-06-04 Cafe Martinez debit 5200
+05-06-2026 Transferencia recibida Juan +35000</textarea>
+                        <button class="button button-primary" type="submit">Procesar movimientos</button>
+                    </form>
+                    <div class="panel">
+                        <div class="panel-title">
+                            <h3>Transacciones detectadas</h3>
+                            <span id="parserCount">0 items</span>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Descripcion</th>
+                                        <th>Tipo</th>
+                                        <th>Monto</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="parserResults"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section prototype-section" id="prototype" aria-labelledby="prototype-title">
+                <div class="section-heading compact">
+                    <p class="eyebrow">Prototipo interactivo</p>
+                    <h2 id="prototype-title">Tabs principales de freemoney</h2>
+                    <p>Usa la navegacion inferior para recorrer Main, Income, Spending y Savings.</p>
+                </div>
+
+                <div class="app-prototype">
+                    <div class="prototype-status">
+                        <span>freemoney</span>
+                        <strong id="prototypeClock">09:41</strong>
+                    </div>
+
+                    <section class="tab-screen active" id="tab-main" data-tab-panel="main" aria-labelledby="tab-main-button">
+                        <div class="screen-header">
+                            <span>Vista Principal</span>
+                            <h3>Radiografia financiera de junio</h3>
+                        </div>
+                        <div class="summary-grid">
+                            <article class="summary-card income">
+                                <span>Ingresos del mes</span>
+                                <strong id="mainIncome">$ 0</strong>
+                                <small>Automaticos + manuales</small>
+                            </article>
+                            <article class="summary-card spending">
+                                <span>Gastos del mes</span>
+                                <strong id="mainSpending">$ 0</strong>
+                                <small>Resumenes + WhatsApp</small>
+                            </article>
+                            <article class="summary-card savings">
+                                <span>Ahorro total</span>
+                                <strong>$ 6.785 USDe</strong>
+                                <small>+12% vs mes anterior</small>
+                            </article>
+                        </div>
+                        <div class="dashboard-grid">
+                            <article class="panel chart-panel">
+                                <div class="panel-title">
+                                    <h4>Gastos por categoria</h4>
+                                    <span id="chartDetail">Toca una categoria</span>
+                                </div>
+                                <svg class="pie-chart" id="pieChart" viewBox="0 0 42 42" role="img" aria-label="Grafico de torta de gastos"></svg>
+                                <div class="legend" id="chartLegend"></div>
+                            </article>
+                            <article class="panel savings-widget">
+                                <div class="panel-title">
+                                    <h4>Resumen de ahorros</h4>
+                                    <span>Meta default</span>
+                                </div>
+                                <div class="progress-ring">
+                                    <strong>67%</strong>
+                                    <span>Fondo de emergencia</span>
+                                </div>
+                                <p>Este mes se guardaron $ 142.000, $ 38.000 mas que el mes anterior.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="tab-screen" id="tab-income" data-tab-panel="income" aria-labelledby="tab-income-button">
+                        <div class="screen-header">
+                            <span>Income Tab</span>
+                            <h3>Control detallado del dinero que entra</h3>
+                        </div>
+                        <form class="quick-form" id="incomeForm">
+                            <input type="number" id="incomeAmount" placeholder="Monto" min="1" required>
+                            <input type="text" id="incomeSource" placeholder="Fuente de ingreso" required>
+                            <select id="incomeRecurrence" aria-label="Recurrencia">
+                                <option value="Este mes unicamente">Este mes unicamente</option>
+                                <option value="Recurrente mensual">Recurrente mensual</option>
+                                <option value="Recurrente quincenal">Recurrente quincenal</option>
+                                <option value="Recurrente semanal">Recurrente semanal</option>
+                            </select>
+                            <button class="button button-primary" type="submit">Agregar ingreso</button>
+                        </form>
+                        <div class="panel">
+                            <div class="panel-title">
+                                <h4>Fuentes detectadas</h4>
+                                <span>Cronologico</span>
+                            </div>
+                            <div class="transaction-list" id="incomeList"></div>
+                        </div>
+                    </section>
+
+                    <section class="tab-screen" id="tab-spending" data-tab-panel="spending" aria-labelledby="tab-spending-button">
+                        <div class="screen-header">
+                            <span>Spending Tab</span>
+                            <h3>Auditoria de gastos extraidos y manuales</h3>
+                        </div>
+                        <form class="quick-form" id="expenseForm">
+                            <input type="number" id="expenseAmount" placeholder="Monto" min="1" required>
+                            <select id="expenseCategory" aria-label="Categoria">
+                                <option>Alimentos</option>
+                                <option>Servicios</option>
+                                <option>Entretenimiento</option>
+                                <option>Transporte</option>
+                                <option>Musica/Suscripciones</option>
+                            </select>
+                            <input type="text" id="expenseDescription" placeholder="Descripcion opcional">
+                            <button class="button button-primary" type="submit">Registrar gasto</button>
+                        </form>
+
+                        <article class="panel whatsapp-panel">
+                            <div class="panel-title">
+                                <h4>Bot de WhatsApp</h4>
+                                <span>Lenguaje natural</span>
+                            </div>
+                            <form class="chat-form" id="botForm">
+                                <input type="text" id="botMessage" placeholder='Ej: "Suscripcion software 15 usd"' required>
+                                <button class="button button-secondary" type="submit">Enviar al bot</button>
+                            </form>
+                            <p id="botResponse">El bot extrae monto, categoria y descripcion en tiempo real.</p>
+                        </article>
+
+                        <div class="panel">
+                            <div class="panel-title">
+                                <h4>Historial de transacciones</h4>
+                                <span>Mas recientes primero</span>
+                            </div>
+                            <div class="transaction-list long-list" id="expenseList"></div>
+                        </div>
+                    </section>
+
+                    <section class="tab-screen" id="tab-savings" data-tab-panel="savings" aria-labelledby="tab-savings-button">
+                        <div class="screen-header">
+                            <span>Savings Tab</span>
+                            <h3>Metas, reglas inteligentes y billetera unificada</h3>
+                        </div>
+                        <div class="wallet-grid">
+                            <article class="wallet-card">
+                                <span>ARS</span>
+                                <strong>$ 1.420.000</strong>
+                            </article>
+                            <article class="wallet-card">
+                                <span>USD</span>
+                                <strong>US$ 3.750</strong>
+                            </article>
+                            <article class="wallet-card">
+                                <span>USDC</span>
+                                <strong>2.250</strong>
+                            </article>
+                        </div>
+                        <article class="panel unified-total">
+                            <span>Total unificado</span>
+                            <strong>US$ 6.785</strong>
+                            <small>Convertido con tipo de cambio de mercado simulado: ARS 1.120 / USD</small>
+                        </article>
+                        <div class="goal-list">
+                            <article class="goal-card">
+                                <div>
+                                    <h4>Fondo de Emergencia</h4>
+                                    <span>$ 1.340.000 / $ 2.000.000</span>
+                                </div>
+                                <progress max="100" value="67"></progress>
+                            </article>
+                            <article class="goal-card">
+                                <div>
+                                    <h4>Vacaciones</h4>
+                                    <span>US$ 900 / US$ 1.500</span>
+                                </div>
+                                <progress max="100" value="60"></progress>
+                            </article>
+                            <article class="goal-card">
+                                <div>
+                                    <h4>Hardware / Nuevos Instrumentos</h4>
+                                    <span>USDC 750 / USDC 2.000</span>
+                                </div>
+                                <progress max="100" value="38"></progress>
+                            </article>
+                        </div>
+                        <div class="smart-savings">
+                            <article>
+                                <h4>Modo Redondeo</h4>
+                                <p>Un gasto de $4.50 se registra como $5.00 y $0.50 se asignan a la meta default.</p>
+                            </article>
+                            <article>
+                                <h4>Pagate a ti mismo</h4>
+                                <p>El 15% de cada ingreso detectado se pre-asigna visualmente al fondo de ahorro.</p>
+                            </article>
+                        </div>
+                        <div class="line-chart" aria-label="Grafico de evolucion historica de ahorros">
+                            <span style="height: 28%"></span>
+                            <span style="height: 42%"></span>
+                            <span style="height: 36%"></span>
+                            <span style="height: 55%"></span>
+                            <span style="height: 61%"></span>
+                            <span style="height: 75%"></span>
+                            <span style="height: 88%"></span>
+                        </div>
+                    </section>
+
+                    <nav class="bottom-nav" aria-label="Navegacion de tabs">
+                        <button class="active" id="tab-main-button" type="button" data-tab="main">Principal</button>
+                        <button id="tab-income-button" type="button" data-tab="income">Ingresos</button>
+                        <button id="tab-spending-button" type="button" data-tab="spending">Gastos</button>
+                        <button id="tab-savings-button" type="button" data-tab="savings">Ahorros</button>
+                    </nav>
+                </div>
+            </section>
+
+            <section class="section architecture-section">
+                <div class="section-heading compact">
+                    <p class="eyebrow">Arquitectura funcional</p>
+                    <h2>Flujos core propuestos</h2>
+                </div>
+                <div class="flow-grid">
+                    <article>
+                        <span>01</span>
+                        <h3>Resumen PDF</h3>
+                        <p>OCR/text extraction, normalizacion bilingue y clasificacion de debito/credito antes de persistir localmente.</p>
+                    </article>
+                    <article>
+                        <span>02</span>
+                        <h3>Bot WhatsApp</h3>
+                        <p>Webhook recibe mensajes, parser NLP extrae monto/moneda, categoriza y sincroniza con la pestaña Gastos.</p>
+                    </article>
+                    <article>
+                        <span>03</span>
+                        <h3>Reglas de ahorro</h3>
+                        <p>Eventos de gasto e ingreso disparan redondeos y porcentajes automáticos hacia metas seleccionadas.</p>
+                    </article>
+                    <article>
+                        <span>04</span>
+                        <h3>Multidivisa</h3>
+                        <p>Balances ARS, USD y USDC se convierten a moneda base con cotizacion de mercado en tiempo real.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/freemoney.js"></script>
+</body>
+
+</html>

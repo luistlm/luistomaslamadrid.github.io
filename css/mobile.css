@@ -395,6 +395,7 @@ button a :hover {
     left: 50%;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     flex-grow: 0;
     margin-right: 18px;
@@ -410,6 +411,25 @@ button a :hover {
     color: #ececec;
     text-shadow: 1px 1px #F34E4E;
     display: flex;
+}
+
+.freemoney-cta {
+    margin-top: 16px;
+    padding: 9px 15px;
+    border: 2px solid #00ffbb;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.42);
+    color: #ececec;
+    font-family: "Strait";
+    font-size: 0.95em;
+    font-weight: 800;
+    white-space: nowrap;
+    text-shadow: 1px 1px #F34E4E;
+}
+
+.freemoney-cta:hover {
+    background: #00ffbb;
+    color: #001433;
 }
 
 #scroll {

@@ -134,7 +134,7 @@
                 <div class="section-heading compact">
                     <p class="eyebrow">Motor de procesamiento</p>
                     <h2 id="parser-title">Demo de parser de resumenes</h2>
-                    <p>Pega movimientos en español o ingles para simular la extraccion inteligente que alimenta la base local.</p>
+                    <p>Pega movimientos en español o ingles para simular la extraccion inteligente y revisa cada item antes de guardarlo en la base local.</p>
                 </div>
                 <div class="parser-layout">
                     <form class="panel parser-panel" id="parserForm">
@@ -148,20 +148,27 @@
                     <div class="panel">
                         <div class="panel-title">
                             <h3>Transacciones detectadas</h3>
-                            <span id="parserCount">0 items</span>
+                            <span id="parserCount">0 items · $ 0</span>
                         </div>
+                        <p class="approval-copy">Etapa de aprobacion: marca los movimientos correctos, ajusta la categoria y confirma solo lo que quieras incorporar.</p>
                         <div class="table-wrap">
                             <table>
                                 <thead>
                                     <tr>
+                                        <th>Aprobar</th>
                                         <th>Fecha</th>
                                         <th>Descripcion</th>
+                                        <th>Categoria</th>
                                         <th>Tipo</th>
                                         <th>Monto</th>
                                     </tr>
                                 </thead>
                                 <tbody id="parserResults"></tbody>
                             </table>
+                        </div>
+                        <div class="approval-actions">
+                            <span id="approvalSummary">Sin movimientos aprobados todavia</span>
+                            <button class="button button-secondary" id="approveTransactions" type="button">Agregar aprobados</button>
                         </div>
                     </div>
                 </div>
@@ -198,8 +205,8 @@
                             </article>
                             <article class="summary-card savings">
                                 <span>Ahorro total</span>
-                                <strong>$ 6.785 USDe</strong>
-                                <small>+12% vs mes anterior</small>
+                                <strong id="mainSavingsTotal">$ 0</strong>
+                                <small id="savingsComparison">Calculando evolucion</small>
                             </article>
                         </div>
                         <div class="dashboard-grid">
@@ -216,11 +223,11 @@
                                     <h4>Resumen de ahorros</h4>
                                     <span>Meta default</span>
                                 </div>
-                                <div class="progress-ring">
-                                    <strong>67%</strong>
-                                    <span>Fondo de emergencia</span>
+                                <div class="progress-ring" id="defaultGoalRing">
+                                    <strong id="defaultGoalPercent">0%</strong>
+                                    <span id="defaultGoalName">Meta default</span>
                                 </div>
-                                <p>Este mes se guardaron $ 142.000, $ 38.000 mas que el mes anterior.</p>
+                                <p id="savingsWidgetCopy">Las reglas inteligentes se recalculan con cada ingreso o gasto aprobado.</p>
                             </article>
                         </div>
                     </section>
@@ -234,17 +241,18 @@
                             <input type="number" id="incomeAmount" placeholder="Monto" min="1" required>
                             <input type="text" id="incomeSource" placeholder="Fuente de ingreso" required>
                             <select id="incomeRecurrence" aria-label="Recurrencia">
-                                <option value="Este mes unicamente">Este mes unicamente</option>
-                                <option value="Recurrente mensual">Recurrente mensual</option>
-                                <option value="Recurrente quincenal">Recurrente quincenal</option>
-                                <option value="Recurrente semanal">Recurrente semanal</option>
+                                <option value="This month only">This month only</option>
+                                <option value="Recurrent - monthly">Recurrent - monthly</option>
+                                <option value="Recurrent - biweekly">Recurrent - biweekly</option>
+                                <option value="Recurrent - weekly">Recurrent - weekly</option>
                             </select>
                             <button class="button button-primary" type="submit">Agregar ingreso</button>
                         </form>
+                        <button class="fab" id="incomeFab" type="button" aria-label="Agregar ingreso manual">+</button>
                         <div class="panel">
                             <div class="panel-title">
                                 <h4>Fuentes detectadas</h4>
-                                <span>Cronologico</span>
+                                <span id="incomeTotalLabel">Cronologico</span>
                             </div>
                             <div class="transaction-list" id="incomeList"></div>
                         </div>
@@ -271,7 +279,7 @@
                         <article class="panel whatsapp-panel">
                             <div class="panel-title">
                                 <h4>Bot de WhatsApp</h4>
-                                <span>Lenguaje natural</span>
+                                <span class="connected-dot">Chat dedicado conectado</span>
                             </div>
                             <form class="chat-form" id="botForm">
                                 <input type="text" id="botMessage" placeholder='Ej: "Suscripcion software 15 usd"' required>
@@ -283,7 +291,7 @@
                         <div class="panel">
                             <div class="panel-title">
                                 <h4>Historial de transacciones</h4>
-                                <span>Mas recientes primero</span>
+                                <span id="expenseTotalLabel">Mas recientes primero</span>
                             </div>
                             <div class="transaction-list long-list" id="expenseList"></div>
                         </div>
@@ -297,64 +305,45 @@
                         <div class="wallet-grid">
                             <article class="wallet-card">
                                 <span>ARS</span>
-                                <strong>$ 1.420.000</strong>
+                                <strong id="walletArs">$ 0</strong>
                             </article>
                             <article class="wallet-card">
                                 <span>USD</span>
-                                <strong>US$ 3.750</strong>
+                                <strong id="walletUsd">US$ 0</strong>
                             </article>
                             <article class="wallet-card">
                                 <span>USDC</span>
-                                <strong>2.250</strong>
+                                <strong id="walletUsdc">USDC 0</strong>
                             </article>
                         </div>
                         <article class="panel unified-total">
                             <span>Total unificado</span>
-                            <strong>US$ 6.785</strong>
-                            <small>Convertido con tipo de cambio de mercado simulado: ARS 1.120 / USD</small>
+                            <strong id="unifiedTotal">US$ 0</strong>
+                            <small id="exchangeRateLabel">Convertido con tipo de cambio de mercado simulado: ARS 1.120 / USD</small>
                         </article>
-                        <div class="goal-list">
-                            <article class="goal-card">
-                                <div>
-                                    <h4>Fondo de Emergencia</h4>
-                                    <span>$ 1.340.000 / $ 2.000.000</span>
-                                </div>
-                                <progress max="100" value="67"></progress>
-                            </article>
-                            <article class="goal-card">
-                                <div>
-                                    <h4>Vacaciones</h4>
-                                    <span>US$ 900 / US$ 1.500</span>
-                                </div>
-                                <progress max="100" value="60"></progress>
-                            </article>
-                            <article class="goal-card">
-                                <div>
-                                    <h4>Hardware / Nuevos Instrumentos</h4>
-                                    <span>USDC 750 / USDC 2.000</span>
-                                </div>
-                                <progress max="100" value="38"></progress>
-                            </article>
-                        </div>
+                        <form class="quick-form goal-form" id="goalForm">
+                            <input type="text" id="goalName" placeholder="Nueva meta" required>
+                            <input type="number" id="goalTarget" placeholder="Monto objetivo" min="1" required>
+                            <select id="goalCurrency" aria-label="Moneda de meta">
+                                <option>ARS</option>
+                                <option>USD</option>
+                                <option>USDC</option>
+                            </select>
+                            <input type="date" id="goalDeadline" aria-label="Fecha limite opcional">
+                            <button class="button button-primary" type="submit">Crear meta</button>
+                        </form>
+                        <div class="goal-list" id="goalList"></div>
                         <div class="smart-savings">
                             <article>
                                 <h4>Modo Redondeo</h4>
-                                <p>Un gasto de $4.50 se registra como $5.00 y $0.50 se asignan a la meta default.</p>
+                                <p id="roundUpCopy">Cada gasto se redondea y la diferencia se asigna a la meta default.</p>
                             </article>
                             <article>
                                 <h4>Pagate a ti mismo</h4>
-                                <p>El 15% de cada ingreso detectado se pre-asigna visualmente al fondo de ahorro.</p>
+                                <p id="retentionCopy">El 15% de cada ingreso detectado se pre-asigna visualmente al fondo de ahorro.</p>
                             </article>
                         </div>
-                        <div class="line-chart" aria-label="Grafico de evolucion historica de ahorros">
-                            <span style="height: 28%"></span>
-                            <span style="height: 42%"></span>
-                            <span style="height: 36%"></span>
-                            <span style="height: 55%"></span>
-                            <span style="height: 61%"></span>
-                            <span style="height: 75%"></span>
-                            <span style="height: 88%"></span>
-                        </div>
+                        <div class="line-chart" id="savingsChart" aria-label="Grafico de evolucion historica de ahorros"></div>
                     </section>
 
                     <nav class="bottom-nav" aria-label="Navegacion de tabs">

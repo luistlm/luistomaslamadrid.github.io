@@ -255,7 +255,7 @@ a {
 [data-theme="dark"] .goal-card,
 [data-theme="dark"] .smart-savings article,
 [data-theme="dark"] .unified-total {
-    background: rgba(11, 16, 32, 0.78);
+    background: rgba(5, 9, 18, 0.92);
 }
 
 .hero-metrics article {
@@ -335,9 +335,25 @@ a {
     color: #04130a;
 }
 
+[data-theme="dark"] .balance-card,
+[data-theme="dark"] .summary-card.income,
+[data-theme="dark"] .summary-card.spending,
+[data-theme="dark"] .summary-card.savings {
+    border: 1px solid #1f2937;
+    background: linear-gradient(135deg, #030712, #0f172a);
+    color: var(--text);
+}
+
 .balance-card span,
 .balance-card small {
     color: rgba(4, 19, 10, 0.72);
+}
+
+[data-theme="dark"] .balance-card span,
+[data-theme="dark"] .balance-card small,
+[data-theme="dark"] .summary-card span,
+[data-theme="dark"] .summary-card small {
+    color: var(--muted);
 }
 
 .balance-card strong {
@@ -511,6 +527,18 @@ select {
     outline: none;
 }
 
+[data-theme="dark"] textarea,
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] .phone-card,
+[data-theme="dark"] .chat-bubble,
+[data-theme="dark"] .phone-chart,
+[data-theme="dark"] .phone-tabs,
+[data-theme="dark"] .legend button,
+[data-theme="dark"] .transaction-item {
+    background: #050914;
+}
+
 input[type="checkbox"] {
     width: auto;
     accent-color: var(--primary);
@@ -596,6 +624,11 @@ th {
     padding: 20px 20px 92px;
 }
 
+[data-theme="dark"] .app-prototype,
+[data-theme="dark"] .phone {
+    background: linear-gradient(180deg, #030712, #020617);
+}
+
 .prototype-status {
     display: flex;
     align-items: center;
@@ -656,9 +689,22 @@ th {
     background: linear-gradient(135deg, #bfdbfe, #60a5fa);
 }
 
+[data-theme="dark"] .summary-card.income,
+[data-theme="dark"] .summary-card.spending,
+[data-theme="dark"] .summary-card.savings {
+    border: 1px solid #1f2937;
+    background: linear-gradient(135deg, #030712, #0f172a);
+    color: var(--text);
+}
+
 .summary-card span,
 .summary-card small {
     color: rgba(4, 19, 10, 0.72);
+}
+
+[data-theme="dark"] .summary-card span,
+[data-theme="dark"] .summary-card small {
+    color: var(--muted);
 }
 
 .summary-card strong {
